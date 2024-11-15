@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Categories = () => {
 
     const [categories, setCategories] = useState([])
-
+    console.log(categories)
     useEffect(() => {
         fetch('https://openapi.programming-hero.com/api/news/categories')
             .then(res => res.json())
@@ -16,12 +17,12 @@ const Categories = () => {
             <h1 className='font-bold'>All Caterogy</h1>
             <div className='flex flex-col gap-2 mt-5 '>
                 {
-                    categories.map(c =>
-                        <button className='btn' key={c.category_id}>{c.category_name}</button>
+                    categories.map(category =>
+                        <NavLink to={`/category/${category.category_id}`} className='btn' key={category.category_id}>{category.category_name}</NavLink>
                     )
                 }
             </div>
-        </div>
+        </div >
     );
 };
 

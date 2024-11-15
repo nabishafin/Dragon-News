@@ -1,7 +1,10 @@
+import { Outlet } from "react-router-dom";
+import Bg from "../components/bg";
 import Categories from "../components/Categories";
 import FindUsOn from "../components/FindUsOn";
 import Header from "../components/Header";
 import Navbar from "../components/Navbar";
+import Qzone from "../components/Qzone";
 import SocialLogin from "../components/SocialLogin";
 
 const Home = () => {
@@ -22,13 +25,15 @@ const Home = () => {
                     <Categories></Categories>
                 </aside>
                 {/* center */}
-                <section className=" md:col-span-6 border-2 border-red-600">
-                    Dragon News Home
+                <section className=" md:col-span-6 border-2 border-red-600 p-3">
+                    <Outlet></Outlet>
                 </section>
                 {/* right side  */}
                 <aside className=" md:col-span-3 border-2 border-fuchsia-600 p-3">
                     <SocialLogin></SocialLogin>
                     <FindUsOn></FindUsOn>
+                    <Qzone></Qzone>
+                    <Bg></Bg>
                 </aside>
             </main>
 
