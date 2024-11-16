@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import navlogo from '../assets/user.png'
+import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
+
+    const { handleLogOut, userinfo } = useContext(AuthContext)
+
+
+    console.log(userinfo)
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -47,7 +53,19 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end flex gap-4 items-center">
                     <img src={navlogo} alt="" />
-                    <Link to='/auth/login' className="bg-[#403F3F] py-2 px-4 rounded-md text-white">LogIn</Link>
+
+                    {
+                        userinfo && userinfo?.email ? (
+                            <button>
+                                <Link onClick={handleLogOut} to='/auth/login' className="bg-[#403F3F] py-2 px-4 rounded-md text-white">log-Out</Link>
+                            </button>
+                        ) : (
+                            <button>
+                                <Link to='/auth/login' className="bg-[#403F3F] py-2 px-4 rounded-md text-white">Log-In</Link>
+                            </button>
+                        )
+                    }
+
                 </div>
             </div>
         </div>
